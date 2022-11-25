@@ -50,8 +50,8 @@ export async function solanaAuthorize(
   var enc = new TextEncoder();
   let walletIsVerified = nacl.sign.detached.verify(
     enc.encode("Please sign this message to login."),
-    bs58.decode(signedMessage.signature),
-    bs58.decode(signedMessage.walletAddress)
+    bs58.decode(signedMessage),
+    bs58.decode(walletId)
   );
 
   if (walletIsVerified) {
