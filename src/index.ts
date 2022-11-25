@@ -48,17 +48,23 @@ app.get('/check-wallet', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const { message, walletId } = req.body;
+  const { signedMessage, walletAddress } = req.body;
 
-  let solanaLoginRes = await solanaAuthorize(message, walletId, globalSolCon);
+  try {
+    let solanaLoginRes = await solanaAuthorize(signedMessage, walletAddress, globalSolCon);
 
-  if (!solanaLoginRes) {
-    return res.status(404).send({ "error": 404 });
+    if (!solanaLoginRes) {
+      return res.status(404).send({ "error": 404 });
+    }
+
+    res.send({
+      "token": solanaLoginRes
+    });
+  } catch (e) {
+    res.status(500).send({
+      "error": "Cannot verify wallet"
+    });
   }
-
-  res.send({
-    "token": solanaLoginRes
-  });
 });
 
 
