@@ -7,5 +7,5 @@ export async function createGame(req: Request, res: Response) {
 }
 
 export async function updateGame(req: Request, res: Response) {
-  return {}
+  return res.send({});
 }

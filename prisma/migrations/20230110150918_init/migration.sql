@@ -1,34 +1,34 @@
 -- CreateTable
 CREATE TABLE "GameItem" (
-    "id" SERIAL NOT NULL,
-    "gameId" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
+    "gameId" TEXT NOT NULL,
 
     CONSTRAINT "GameItem_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Game" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
-    "playerId" INTEGER NOT NULL,
+    "playerId" TEXT NOT NULL,
 
     CONSTRAINT "Game_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Profile" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "bio" TEXT,
-    "userId" INTEGER NOT NULL,
+    "userId" TEXT NOT NULL,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "walletId" TEXT NOT NULL,
     "name" TEXT,
 
