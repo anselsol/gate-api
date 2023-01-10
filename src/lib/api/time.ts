@@ -1,4 +1,3 @@
-
 const SECONDS = 1000;
 const MINUTES = 60 * SECONDS;
 const HOURS = 60 * MINUTES;
@@ -31,6 +30,3 @@ export function sleep(time: Timespan) {
   const total = millis + SECONDS * seconds + MINUTES * minutes + HOURS * hours;
   return new Promise((resolve) => setTimeout(resolve, total))
 }
-
-
-

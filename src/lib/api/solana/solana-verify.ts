@@ -27,12 +27,10 @@ export async function verifyToken(token: string | undefined): Promise<boolean | 
   const loadedPublicKey = await jose.importSPKI(publicKey, alg);
 
   try {
-    const { payload, protectedHeader } = await jose.jwtVerify(jwt, loadedPublicKey, {
+    await jose.jwtVerify(jwt, loadedPublicKey, {
       issuer: 'urn:libertysquare:notion',
       audience: 'urn:libertysquare:nft-owner'
     });
-    console.log(protectedHeader)
-    console.log(payload)
 
     return true;
 
@@ -45,7 +43,8 @@ export async function verifyToken(token: string | undefined): Promise<boolean | 
 export async function solanaAuthorize(
   signedMessage: any,
   walletId: string,
-  connection: Connection
+  connection: Connection,
+  isOpenLogin: boolean = false
 ): Promise<string | boolean> {
   var enc = new TextEncoder();
   let walletIsVerified = nacl.sign.detached.verify(
@@ -58,7 +57,7 @@ export async function solanaAuthorize(
     try {
       const isWalletOwnNft = await walletOwnsNft(connection, walletId);
 
-      if (isWalletOwnNft) {
+      if (isOpenLogin || isWalletOwnNft) {
         const alg = 'ES256';
         const signKey = await jose.importPKCS8(LOCAL_RSA256_KEY, alg);
 

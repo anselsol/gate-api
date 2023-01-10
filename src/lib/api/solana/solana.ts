@@ -1,6 +1,6 @@
 import { PublicKey } from '@solana/web3.js';
-import HASHLIST from './constants/hashlist.json';
-import { getNFTsByOwner, getNFTMetadata } from './nft';
+import HASHLIST from '../../../constants/hashlist.json';
+import { getNFTMetadata } from './nft';
 
 /**
  * This function fetchs the Metadata of the respective NFT provided from the mint address
@@ -27,7 +27,7 @@ export const walletOwnsNft = async (conn: any, walletId: string) => {
   //   return false;
   // }
 
-  const hashlistIds = HASHLIST.map(hash => hash.id);
+  const hashlistIds = HASHLIST.map((hash: any) => hash.id);
 
-  return hashlistIds.some((pubkey) => pubkey === walletId);
+  return hashlistIds.some((pubkey: string) => pubkey === walletId);
 };
