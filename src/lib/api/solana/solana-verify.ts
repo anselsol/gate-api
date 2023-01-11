@@ -18,8 +18,8 @@ import { breakLine } from '@api/utils';
 // SiyATMF08Y3F63X9mgqch+Ntjgsv3yCSzvOdi8z3W2Frg/WtticyBCklpg==
 // -----END PUBLIC KEY-----`;
 
-const LOCAL_RSA256_KEY = breakLine(process.env.LOCAL_RSA256_KEY!);
-const PUBLIC_KEY = breakLine(process.env.PUBLIC_KEY!);
+const LOCAL_RSA256_KEY = process.env.LOCAL_RSA256_KEY!;
+const PUBLIC_KEY = process.env.PUBLIC_KEY!;
 
 export async function verifyToken(token: string | undefined): Promise<boolean | null> {
   if (!token) {
