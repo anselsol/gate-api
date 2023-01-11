@@ -21,19 +21,19 @@ model Game {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   published Boolean    @default(false)
-  player    User       @relation(fields: [playerId], references: [id])
+  player    Person     @relation(fields: [playerId], references: [id])
   playerId  String
   gameItems GameItem[]
 }
 
 model Profile {
-  id     String  @id @default(uuid())
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId String  @unique
+  id       String  @id @default(uuid())
+  bio      String?
+  person   Person  @relation(fields: [personId], references: [id])
+  personId String  @unique
 }
 
-model User {
+model Person {
   id       String   @id @default(uuid())
   walletId String   @unique
   name     String?

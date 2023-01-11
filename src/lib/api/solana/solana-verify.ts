@@ -62,8 +62,8 @@ export async function solanaAuthorize(
     try {
       const isWalletOwnNft = await walletOwnsNft(connection, walletId);
 
-      // Create or find user
-      await prisma.user.upsert({
+      // Create or find person
+      await prisma.person.upsert({
         where: { walletId },
         update: {},
         create: { walletId },

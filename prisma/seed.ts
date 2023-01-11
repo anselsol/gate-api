@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-const userData: Prisma.UserCreateInput[] = [
+const personData: Prisma.PersonCreateInput[] = [
   {
     name: 'A N S E L',
     walletId: 'CZgpbGa7Cj1znLGH1xf2jGpDn8Dy72dap7UmhSVKPPiE',
@@ -22,11 +22,11 @@ const userData: Prisma.UserCreateInput[] = [
 
 async function main() {
   console.log(`Start seeding ...`)
-  for (const u of userData) {
-    const user = await prisma.user.create({
+  for (const u of personData) {
+    const person = await prisma.person.create({
       data: u,
     })
-    console.log(`Created user with id: ${user.id}`)
+    console.log(`Created person with id: ${person.id}`)
   }
   console.log(`Seeding finished.`)
 }
