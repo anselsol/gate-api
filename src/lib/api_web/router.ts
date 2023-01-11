@@ -15,6 +15,6 @@ export function router(app: Express) {
   app.put('/arkade/games/:id', updateGame);
   app.get('/arkade/leaderboards', login);
 
-  // @ts-ignore
-  app.use('/api-docs', swaggerAuth);
+  // Setup Swagger
+  swaggerAuth(app);
 }

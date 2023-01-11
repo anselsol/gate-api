@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info: 
+    title: Liberty Square API
+    version: 1.0.0
+    description: Contains the doc to all the endpoints of our API.
+    license: 
+        name: Licensed Under MIT
+        url: https://spdx.org/licenses/MIT.html
+    contact:
+        name: A N S E L
+        email: 
+        url: https://jsonplaceholder.typicode.com
+    servers: 
+      - url: http://localhost:5010
+        description: Development server
+      - url: https://api.libertysquare.io
+        description: Production server
+schemes:
+    - https
+consumes:
+    - application/json
+produces:
+    - application/json
+paths:
+    /login: 
+        post: 
+            tags:
+                - Accounts
+            summary: Logs in a LS holder's wallet.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+    /open-login: 
+        post: 
+            tags:
+                - Accounts
+            summary: Logs in any wallet.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+    /check-wallet: 
+        get: 
+            tags:
+                - Accounts
+            summary: Verify an auth token used by a User.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+    /arkade/games: 
+        post: 
+            tags:
+                - Games
+            summary: Create a new game for a Person.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+    /arkade/games/:id: 
+        get: 
+            tags:
+                - Games
+            summary: Load a single game by its ID.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+        put: 
+            tags:
+                - Games
+            summary: Update a game.
+            responses: 
+                200: 
+                    description: OK
+                    schema: 
+                        $ref: "#/definitions/Game"
+definitions: 
+    Person:
+        required:
+        properties:
+            name:
+                type: string
+                description: The name of the Person.
+                example: Marc
+            walletId: 
+                type: string
+                description: The base58 address of the Person's wallet.
+                example: 9ZNTfG4NyQgxy2SWjSiQoUyBPEvXT2xo7fKc5hPYYJ7b
+    Game:
+        required:
+        properties:
+            createdAt:
+                type: date
+                description: TODO.
+                example: TODO
+            updatedAt: 
+                type: date
+                description: TODO.
+                example: TODO
+            player:
+                type: "#/definitions/Person"
+                description: TODO.
+                example: TODO
