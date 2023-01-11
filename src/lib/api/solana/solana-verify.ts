@@ -5,6 +5,7 @@ import { TextEncoder } from 'util';
 import { Connection } from '@solana/web3.js';
 import { walletOwnsNft } from './solana';
 import { prisma } from '@config';
+import { breakLine } from '@api/utils';
 
 // const LOCAL_RSA256_KEY = `-----BEGIN PRIVATE KEY-----
 //   MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgIvQwHYqe82zpxy2B
@@ -17,8 +18,8 @@ import { prisma } from '@config';
 // SiyATMF08Y3F63X9mgqch+Ntjgsv3yCSzvOdi8z3W2Frg/WtticyBCklpg==
 // -----END PUBLIC KEY-----`;
 
-const LOCAL_RSA256_KEY = process.env.LOCAL_RSA256_KEY!;
-const PUBLIC_KEY = process.env.PUBLIC_KEY!;
+const LOCAL_RSA256_KEY = breakLine(process.env.LOCAL_RSA256_KEY!);
+const PUBLIC_KEY = breakLine(process.env.PUBLIC_KEY!);
 
 export async function verifyToken(token: string | undefined): Promise<boolean | null> {
   if (!token) {
