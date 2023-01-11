@@ -59,7 +59,8 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --files src/index.ts",
     "clean": "rm -rf dist",
     "prepare": "run-s clean postinstall",
-    "postinstall": "tsc && tsc-alias",
+    "postinstall": "tsc && tsc-alias && db-migrate-deploy",
+    "db-migrate-deploy": "npx prisma migrate deploy",
     "shell": "node -e \"$(< shell)\" -i --experimental-repl-await",
     "test": "mocha -r ts-node/register src/test/**/*.test.ts --timeout 0"
   },
